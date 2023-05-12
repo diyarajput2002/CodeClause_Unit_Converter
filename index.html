@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		<title>Unit Converter</title>
+		<link rel="icon" type="image/png" href="favicon.png">
+	</head>
+
+	<style>
+		body {
+			background: linear-gradient(90deg,#f8fae4,#aef64a);
+		}
+		h1.mb-5 {
+			text-align: center;
+			font-family:arial;
+			color: rgb(42, 183, 249);
+			border: 2px solid rgb(11, 115, 159);
+		}
+	</style>
+	<body>
+		<div class="container my-5">
+			<h1 class="mb-5">Unit Converter</h1>
+			<div class="row">
+				<div class="col-md-4 mb-5">
+					<div class="card">
+						<h5 style="color:rgb(13, 0, 255)"><i class=""></i> Length</h5>
+						<div class="card-body">
+							<div class="row">
+								<p>From:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="length-from-unit">
+										<option value="mm">MM</option>
+										<option value="cm">CM</option>
+										<option value="inch">Inch</option>
+										<option value="foot">Foot</option>
+										<option value="meter">Meter</option>
+										<option value="km">KM</option>
+										<option value="mile">Mile</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" type="number" step="0.01" id="length-from-value">
+								</div>
+							</div>
+							<div class="row">
+								<p>To:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="length-to-unit">
+										<option value="mm">MM</option>
+										<option value="cm">CM</option>
+										<option value="inch">Inch</option>
+										<option value="foot">Foot</option>
+										<option value="meter">Meter</option>
+										<option value="km">KM</option>
+										<option value="mile">Mile</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" id="length-to-value" readonly>
+								</div>
+							</div>
+							<button class="btn btn-primary" onclick="convertLength()"><i class=""></i> Convert</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 mb-5">
+					<div class="card">
+						<h5 style="color:blue"><i class=""></i> Weight</h5>
+						<div class="card-body">
+							<div class="row">
+								<p>From:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="weight-from-unit">
+										<option value="gram">Gram</option>
+										<option value="ounce">Ounce</option>
+										<option value="pound">Pound</option>
+										<option value="kg">KG</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" type="number" step="0.01" id="weight-from-value">
+								</div>
+							</div>
+							<div class="row">
+								<p>To:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="weight-to-unit">
+										<option value="gram">Gram</option>
+										<option value="ounce">Ounce</option>
+										<option value="pound">Pound</option>
+										<option value="kg">KG</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" id="weight-to-value" readonly>
+								</div>
+							</div>
+							<button class="btn btn-primary" onclick="convertWeight()"><i class=""></i> Convert</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 mb-5">
+					<div class="card">
+						<h5 style="color:blue"><i class=""></i> Speed</h5>
+						<div class="card-body">
+							<div class="row">
+								<p>From:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="speed-from-unit">
+										<option value="fts">Ft/S</option>
+										<option value="ms">M/S</option>
+										<option value="kmh">KM/H</option>
+										<option value="mih">Mi/H</option>
+										<option value="lightspeed">Light Speed</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" type="number" step="0.01" id="speed-from-value">
+								</div>
+							</div>
+							<div class="row">
+								<p>To:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="speed-to-unit">
+										<option value="fts">Ft/S</option>
+										<option value="ms">M/S</option>
+										<option value="kmh">KM/H</option>
+										<option value="mih">Mi/H</option>
+										<option value="lightspeed">Light Speed</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" id="speed-to-value" readonly>
+								</div>
+							</div>
+							<button class="btn btn-primary" onclick="convertSpeed()"><i class=""></i> Convert</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 mb-5">
+					<div class="card">
+						<h5 style="color:blue"><i class=""></i> Temperature</h5>
+						<div class="card-body">
+							<div class="row">
+								<p>From:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="temperature-from-unit">
+										<option value="centigrade">Centigrade</option>
+										<option value="fahrenheit">Fahrenheit</option>
+										<option value="kelvin">Kelvin</option>
+										<option value="rankine">Rankine</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" type="number" step="0.01" id="temperature-from-value">
+								</div>
+							</div>
+							<div class="row">
+								<p>To:</p>
+								<div class="col-md-6 mb-3">
+									<select class="form-select" id="temperature-to-unit">
+										<option value="centigrade">Centigrade</option>
+										<option value="fahrenheit">Fahrenheit</option>
+										<option value="kelvin">Kelvin</option>
+										<option value="rankine">Rankine</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<input class="form-control" id="temperature-to-value" readonly>
+								</div>
+							</div>
+							<button class="btn btn-primary" onclick="convertTemperature()"><i class=""></i> Convert</button>
+						</div>
+					</div>
+				</div>
+		<script src="script.js"></script>
+	</body>
+</html>
